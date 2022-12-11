@@ -24,6 +24,12 @@ Simply create text files in the `wordlists` folder to define a new wordlist. Wor
 
 Words that appear multiple times will automatically be deduplicated.
 
+## Importing a wordlist from BGG
+
+To import a wordlist from a BGG user profile, use:
+
+`npm run import-from-bgg <username>`
+
 # Various info that might be useful for people that are interested in making board games using HTML+CSS:
 
 - `break-inside` CSS property does not work inside `grid` elements in Google Chrome when printing (as of October 2019), but does work with Firefox.
