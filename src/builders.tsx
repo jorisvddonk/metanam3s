@@ -57,7 +57,7 @@ export const coversBuilderFactory = () => {
 };
 
 export const keysBuilderFactory = () => {
-  const keysColors: string[][] = range(10).map(x => {
+  const keysColors: string[][] = range(12).map(x => {
     return shuffle(
       [TRAP_COLOR]
         .concat(range(8).map(() => TEAMCOLOR_1))
