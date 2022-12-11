@@ -1,0 +1,30 @@
+{
+  "name": "metanam3s",
+  "version": "1.0.0",
+  "description": "A simple word card game",
+  "private": "true",
+  "main": "build.ts",
+  "scripts": {
+    "build": "ts-node src/build.tsx",
+    "dev": "parcel src/dev.html"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "@types/puppeteer": "^1.19.1",
+    "@types/react": "^16.9.2",
+    "@types/tinycolor2": "^1.4.2",
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "distraction": "0.0.2",
+    "glob": "^7.1.4",
+    "lodash": "^4.17.15",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "tinycolor2": "^1.4.1",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "author": "Joris van de Donk <jorisvddonk@gmail.com>",
+  "license": "MIT"
+}

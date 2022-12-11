@@ -1,0 +1,6 @@
+node_modules/
+game.pdf
+game.png
+dist/
+.cache/
+out/

@@ -1,0 +1,10 @@
+Pawn
+Knight
+King
+Queen
+Rook
+Bishop
+En passant
+Castle
+Capture
+Checkmate
