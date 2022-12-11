@@ -7,13 +7,19 @@ async function run() {
   try {
     mkdirSync("out");
   } catch (e) {
-    console.error(e);
-    // ignore
+    // ignore... probably not a good idea but I can't be bothered to check the exception, as that's not always trivial in TS
   }
 
-  new Renderer(wordsBuilderFactory(words).build()).renderToPNGs((i) => `./out/words_${i}.png`);
-  new Renderer(coversBuilderFactory().build()).renderToPNGs((i) => `./out/covers_${i}.png`);
-  new Renderer(keysBuilderFactory().build()).renderToPNGs((i) => `./out/keys_${i}.png`);
+  async function render(factory, pngPathFunc, pdfPath) {
+    const renderer = new Renderer(factory);
+    await renderer.renderToPNGs(pngPathFunc);
+    await renderer.renderToPDF(pdfPath);
+    await renderer.close();
+  }
+
+  await render(wordsBuilderFactory(words), (i) => `./out/words_${i}.png`, './out/words.pdf');
+  await render(coversBuilderFactory(), (i) => `./out/covers_${i}.png`, './out/covers.pdf');
+  await render(keysBuilderFactory(), (i) => `./out/keys_${i}.png`, './out/keys.pdf');
 }
 
 run();

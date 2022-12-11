@@ -1,4 +1,4 @@
-import { Builder } from "distraction/dist/Builder";
+import { Builder, DoubleSidedLayoutMode } from "distraction";
 import { Word } from "./Word";
 import React from "react";
 import { TRAP_COLOR, TEAMCOLOR_1, TEAMCOLOR_2, INNOCENT_COLOR, WORD_BACKGROUND_COLOR } from "./constants";
@@ -9,9 +9,14 @@ import { KeyFront, KeyBack } from "./Key";
 const CARDWIDTH = 87;
 const CARDHEIGHT = 56;
 
+const builderOptions = {
+  pageMargin: 10, 
+  doubleSidedLayoutMode: DoubleSidedLayoutMode.SIDE_BY_SIDE__FOLD,
+};
+
 
 export const wordsBuilderFactory = (words) => {
-  const builder_words = new Builder();
+  const builder_words = new Builder(builderOptions);
   words.forEach(word => {
     builder_words.addElement({
       front: () => <Word word={word} color={WORD_BACKGROUND_COLOR} />,
@@ -28,7 +33,7 @@ export const coversBuilderFactory = () => {
     .concat(range(8).map(x => TEAMCOLOR_2))
     .concat(range(7).map(x => INNOCENT_COLOR));
 
-  const builder_covers = new Builder();
+  const builder_covers = new Builder(builderOptions);
   coverColors
     .map((color, i) => <Cover key={`Cover_${i}`} color={color}></Cover>)
     .forEach((elem) => {
@@ -55,13 +60,13 @@ export const keysBuilderFactory = () => {
   const keysColors: string[][] = range(10).map(x => {
     return shuffle(
       [TRAP_COLOR]
-        .concat(range(8).map(x => TEAMCOLOR_1))
-        .concat(range(8).map(x => TEAMCOLOR_2))
+        .concat(range(8).map(() => TEAMCOLOR_1))
+        .concat(range(8).map(() => TEAMCOLOR_2))
         .concat([Math.random() > 0.5 ? TEAMCOLOR_1 : TEAMCOLOR_2])
-        .concat(range(7).map(x => INNOCENT_COLOR))
+        .concat(range(7).map(() => INNOCENT_COLOR))
     );
   });
-  const builder_keys = new Builder();
+  const builder_keys = new Builder(builderOptions);
   keysColors.map((colors, i) => (
     <KeyFront key={`KeyFront_${i}`} colors={colors} />
   )).forEach((elem) => {
